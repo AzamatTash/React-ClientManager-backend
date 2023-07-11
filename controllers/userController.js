@@ -99,6 +99,15 @@ class UserController {
 		return res.json({ token });
 	}
 
+	async user(req, res, next) {
+		const user = await User.findOne({ where: { id: req.user.id } });
+		if (!user) {
+			return next(ApiError.internal('Пользователь не найден'));
+		}
+
+		return res.json({ firstName: user.firstName, lastName: user.lastName });
+	}
+
 	async checkAuth(req, res) {
 		const token = generateJwt(
 			req.user.id,
@@ -107,7 +116,9 @@ class UserController {
 			req.user.lastName,
 			req.user.avatarImg
 		);
-		return res.json({ token });
+		return res.json({
+			token,
+		});
 	}
 }
 
