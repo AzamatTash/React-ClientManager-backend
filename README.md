@@ -1,4 +1,4 @@
-<h1 align="center">Client Manager Backend</h1>
+<h1 align="center">Client Manager</h1>
 
 <h3 align="left">Stack:</h3>
 
